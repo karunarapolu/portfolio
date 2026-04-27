@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Press+Start+2P&family=VT323&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   Karuna Rapolu — Portfolio Design System
+   Palette:
+     #db8388 rose      #934e97 plum     #865ac1 violet
+     #a0a4b7 mist      #140d12 ink      #852467 berry
+     #30c0b7 teal
+   ========================================================= */
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --background: 35 38% 96%;
+    /* warm cream paper */
+    --foreground: 320 25% 7%;
+    /* ink #140d12 */
+
+    --card: 35 50% 98%;
+    --card-foreground: 320 25% 7%;
+
+    --popover: 35 50% 98%;
+    --popover-foreground: 320 25% 7%;
+
+    /* Brand */
+    --primary: 320 25% 7%;
+    /* ink */
+    --primary-foreground: 35 38% 96%;
+
+    --secondary: 230 13% 67%;
+    /* mist #a0a4b7 */
+    --secondary-foreground: 320 25% 7%;
+
+    --muted: 35 25% 90%;
+    --muted-foreground: 320 8% 35%;
+
+    --accent: 174 60% 47%;
+    /* teal #30c0b7 */
+    --accent-foreground: 320 25% 7%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 35 50% 98%;
+
+    --border: 320 12% 18%;
+    --input: 320 12% 18%;
+    --ring: 174 60% 47%;
+
+    --radius: 0.25rem;
+
+    /* Custom palette tokens */
+    --rose: 357 56% 69%;
+    /* #db8388 */
+    --plum: 297 33% 45%;
+    /* #934e97 */
+    --violet: 264 49% 56%;
+    /* #865ac1 */
+    --mist: 230 13% 67%;
+    /* #a0a4b7 */
+    --ink: 320 25% 7%;
+    /* #140d12 */
+    --berry: 322 58% 33%;
+    /* #852467 */
+    --teal: 174 60% 47%;
+    /* #30c0b7 */
+
+    /* Gradients & shadows */
+    --grad-hero: linear-gradient(135deg, hsl(var(--rose)) 0%, hsl(var(--violet)) 50%, hsl(var(--berry)) 100%);
+    --grad-soft: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(35 30% 92%) 100%);
+    --shadow-frame: 4px 4px 0 0 hsl(var(--ink));
+    --shadow-frame-lg: 8px 8px 0 0 hsl(var(--ink));
+    --shadow-soft: 0 1px 2px hsl(var(--ink) / 0.08), 0 8px 24px hsl(var(--ink) / 0.06);
+
+    /* Sidebar (kept for shadcn) */
+    --sidebar-background: 35 38% 96%;
+    --sidebar-foreground: 320 25% 7%;
+    --sidebar-primary: 320 25% 7%;
+    --sidebar-primary-foreground: 35 38% 96%;
+    --sidebar-accent: 35 25% 90%;
+    --sidebar-accent-foreground: 320 25% 7%;
+    --sidebar-border: 320 12% 18%;
+    --sidebar-ring: 174 60% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Fraunces', Georgia, serif;
+    font-feature-settings: "ss01", "ss02";
+    background-image:
+      radial-gradient(hsl(var(--ink) / 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  ::selection {
+    background: hsl(var(--teal));
+    color: hsl(var(--ink));
+  }
+}
+
+@layer components {
+
+  /* Dotted frame like reference */
+  .frame-dotted {
+    border: 1.5px dashed hsl(var(--ink) / 0.45);
+  }
+
+  .label-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .pixel {
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .pixel-game {
+    font-family: 'Press Start 2P', cursive !important;
+    text-transform: uppercase;
+    line-height: 1;
+    -webkit-font-smoothing: none;
+  }
+
+  .serif-display {
+    font-family: 'Instrument Serif', 'Fraunces', serif;
+    font-style: italic;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] uppercase tracking-wider;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid hsl(var(--ink));
+    background: hsl(var(--background));
+    color: hsl(var(--ink));
+  }
+
+  .chip-filled {
+    background: hsl(var(--ink));
+    color: hsl(var(--background));
+  }
+
+  .sticker {
+    @apply inline-flex items-center justify-center px-3 py-1 text-xs font-medium;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1.5px solid hsl(var(--ink));
+    box-shadow: var(--shadow-frame);
+    background: hsl(var(--background));
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .sticker:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 hsl(var(--ink));
+  }
+
+  .paper {
+    background: hsl(var(--card));
+    border: 1.5px solid hsl(var(--ink));
+    box-shadow: var(--shadow-frame);
+  }
+
+  .paper-lg {
+    background: hsl(var(--card));
+    border: 1.5px solid hsl(var(--ink));
+    box-shadow: var(--shadow-frame-lg);
+  }
+
+  .section-rule {
+    border-top: 1.5px dashed hsl(var(--ink) / 0.4);
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+}
+
+@layer utilities {
+  .text-rose {
+    color: hsl(var(--rose));
+  }
+
+  .text-plum {
+    color: hsl(var(--plum));
+  }
+
+  .text-violet {
+    color: hsl(var(--violet));
+  }
+
+  .text-mist {
+    color: hsl(var(--mist));
+  }
+
+  .text-ink {
+    color: hsl(var(--ink));
+  }
+
+  .text-berry {
+    color: hsl(var(--berry));
+  }
+
+  .text-teal {
+    color: hsl(var(--teal));
+  }
+
+  .bg-rose {
+    background-color: hsl(var(--rose));
+  }
+
+  .bg-plum {
+    background-color: hsl(var(--plum));
+  }
+
+  .bg-violet {
+    background-color: hsl(var(--violet));
+  }
+
+  .bg-mist {
+    background-color: hsl(var(--mist));
+  }
+
+  .bg-ink {
+    background-color: hsl(var(--ink));
+  }
+
+  .bg-berry {
+    background-color: hsl(var(--berry));
+  }
+
+  .bg-teal {
+    background-color: hsl(var(--teal));
+  }
+
+  .border-ink {
+    border-color: hsl(var(--ink));
+  }
+
+  @keyframes float-slow {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+
+    50% {
+      transform: translateY(-10px) rotate(var(--r, 0deg));
+    }
+  }
+
+  .animate-float {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  @keyframes spin-slow {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 18s linear infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 28s linear infinite;
+  }
+}
